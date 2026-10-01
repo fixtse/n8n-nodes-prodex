@@ -195,7 +195,7 @@ export async function runAppServerAgent(params: RunAppServerAgentParams): Promis
       rejectStartup = reject;
       void (async () => {
         await request('initialize', {
-          clientInfo: { name: 'n8n-prodex', title: 'ProDex Agent', version: '0.7.1' },
+          clientInfo: { name: 'n8n-prodex', title: 'ProDex Agent', version: '0.7.2' },
           capabilities: { experimentalApi: true },
         });
         write({ jsonrpc: '2.0', method: 'initialized', params: {} });

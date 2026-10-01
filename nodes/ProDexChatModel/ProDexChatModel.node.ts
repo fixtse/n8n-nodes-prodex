@@ -1,9 +1,7 @@
 import type { ILoadOptionsFunctions, INodeType, INodeTypeDescription, ISupplyDataFunctions } from 'n8n-workflow';
 import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
-import { supplyModel } from '@n8n/ai-node-sdk';
 
 import { resolveRunnableAuth } from '../../lib/auth/resolveAuth';
-import { CodexChatModel } from '../../lib/codex/CodexChatModel';
 import { CODEX_MODELS, DEFAULT_CODEX_MODEL } from '../../lib/codex/models';
 import { CodexAuthRefreshError, CodexAuthSetupError } from '../../lib/errors';
 import { resolveSkillNames } from '../../lib/skills/buildAgentPrompt';
@@ -190,6 +188,10 @@ export class ProDexChatModel implements INodeType {
       const skills = resolveSkillNames(this.getNodeParameter('skills', itemIndex, []) as string[]);
       const options = this.getNodeParameter('options', itemIndex, {}) as { timeoutSeconds?: number };
 
+      // n8n discovers every node at startup. Load the optional chat-model
+      // integration only when this node executes, not during discovery.
+      const { supplyModel } = await import('@n8n/ai-node-sdk');
+      const { CodexChatModel } = await import('../../lib/codex/CodexChatModel');
       const chatModel = new CodexChatModel(model, {
         tokenBundle: activeBundle,
         codexHome,

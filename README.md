@@ -265,6 +265,29 @@ The model picker offers GPT-6 Astra, GPT-6.1 Sol (default), GPT-6 Sol, and GPT-6
 
 ---
 
+## Package load troubleshooting
+
+If an update fails with a missing nested `uuid/dist/cjs/index.js`, the error
+comes from the Chat Model's n8n AI SDK dependency tree. Version 0.7.2 defers
+loading that integration until the Chat Model executes, so discovery of the
+package and use of the standalone ProDex Agent do not load the AI SDK.
+
+A missing dependency file can still prevent Chat Model execution. Reinstall
+the package in the same container and as the same user that runs n8n. Stop
+n8n first, back up the community packages directory, then run (after 0.7.2
+has been published):
+
+```bash
+cd /home/node/.n8n/nodes
+npm uninstall @fixtse/n8n-nodes-prodex
+npm install @fixtse/n8n-nodes-prodex@0.7.2
+```
+
+Restart n8n afterward. Adapt the directory to your n8n user folder. Keep the
+n8n database, credentials, and Codex auth directory intact. Dependency
+`overrides` in this package do not control npm resolution when it is installed
+as a dependency of n8n's community packages directory.
+
 ## Development
 
 ```bash

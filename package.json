@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fixtse/n8n-nodes-prodex.git"
+    "url": "git+ssh://git@github.com/fixtse/n8n-nodes-prodex.git"
   },
   "bin": {
     "n8n-nodes-prodex": "./scripts/device-code-bootstrap.mjs",

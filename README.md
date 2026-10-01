@@ -91,7 +91,7 @@ In self-hosted n8n:
 ### Option B: Custom extensions directory (development)
 
 ```bash
-git clone https://github.com/fixtse/n8n-nodes-prodex.git
+git clone git@github.com:fixtse/n8n-nodes-prodex.git
 cd n8n-nodes-prodex
 pnpm install
 pnpm run build

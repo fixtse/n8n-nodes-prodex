@@ -12,18 +12,13 @@ import { NodeConnectionTypes, NodeApiError, NodeOperationError } from 'n8n-workf
 import { resolveCodexHome } from '../../lib/auth/codexEnv';
 import { resolveRunnableAuth } from '../../lib/auth/resolveAuth';
 import { runCodexAgent } from '../../lib/codex/runAgent';
+import { CODEX_MODELS, DEFAULT_CODEX_MODEL } from '../../lib/codex/models';
 import { CodexAuthRefreshError, CodexAuthSetupError, SkillCliInstallError } from '../../lib/errors';
 import { buildAgentPrompt, resolveSkillNames } from '../../lib/skills/buildAgentPrompt';
 import { installSkillViaCli } from '../../lib/skills/installSkillCli';
 import { getInstalledSkillLoadOptions } from '../../lib/skills/skillLoadOptions';
 import { listInstalledSkills, resolveSkillsHome } from '../../lib/skills/skillStore';
 import type { CodexCredentialValues, Personality, ReasoningEffort, SandboxMode, ThreadMode } from '../../lib/types/codex';
-
-const DEFAULT_MODELS = [
-  { name: 'GPT-5.5', value: 'gpt-5.5' },
-  { name: 'GPT-5.4', value: 'gpt-5.4' },
-  { name: 'GPT-5.4 Mini', value: 'gpt-5.4-mini' },
-];
 
 const AGENT_OPERATIONS = ['runAgent', 'invokeSkill'];
 
@@ -78,7 +73,7 @@ export class ProDex implements INodeType {
       },
       {
         displayName:
-          'Known issues & watchouts\n\n• Requires self-hosted n8n and @openai/codex CLI binaries (installed with this package).\n• Use package version 0.1.12 or newer.\n• Never set CODEX_ACCESS_TOKEN to an OAuth access token — it breaks Codex exec.\n• Prefer Read Only sandbox on shared servers unless you trust full filesystem access.\n• Continue Previous Thread stores threadId in node static data between runs.\n• If auth errors appear, re-run ProDex Setup (Start Device Login → Wait for Login Complete).\n• Codex uses your ChatGPT subscription, not pay-per-token API billing.',
+          'Known issues & watchouts\n\n• Requires self-hosted n8n and @openai/codex CLI binaries (installed with this package).\n• Use package version 0.6.0 or newer.\n• Never set CODEX_ACCESS_TOKEN to an OAuth access token — it breaks Codex exec.\n• Prefer Read Only sandbox on shared servers unless you trust full filesystem access.\n• Continue Previous Thread stores threadId in node static data between runs.\n• If auth errors appear, re-run ProDex Setup (Start Device Login → Wait for Login Complete).\n• Codex uses your ChatGPT subscription, not pay-per-token API billing.',
         name: 'knownIssues',
         type: 'notice',
         default: '',
@@ -298,8 +293,8 @@ export class ProDex implements INodeType {
         displayName: 'Model',
         name: 'model',
         type: 'options',
-        options: DEFAULT_MODELS,
-        default: 'gpt-5.4',
+        options: [...CODEX_MODELS],
+        default: DEFAULT_CODEX_MODEL,
         displayOptions: {
           show: {
             operation: AGENT_OPERATIONS,
@@ -314,6 +309,7 @@ export class ProDex implements INodeType {
           { name: 'Extra High', value: 'xhigh' },
           { name: 'High', value: 'high' },
           { name: 'Low', value: 'low' },
+          { name: 'Max', value: 'max' },
           { name: 'Medium', value: 'medium' },
         ],
         default: 'medium',

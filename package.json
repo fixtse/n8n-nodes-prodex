@@ -1,8 +1,11 @@
 {
-  "name": "n8n-nodes-prodex",
-  "version": "0.5.1",
+  "name": "@fixtse/n8n-nodes-prodex",
+  "version": "0.6.0",
   "description": "Self-hosted n8n ProDex node via ChatGPT subscription device-code auth",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://prodex.proday.in",
   "keywords": [
     "n8n-community-node-package",
@@ -21,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/artNcraft/n8n-nodes-prodex.git"
+    "url": "git+https://github.com/fixtse/n8n-nodes-prodex.git"
   },
   "bin": {
     "n8n-nodes-prodex": "./scripts/device-code-bootstrap.mjs",
@@ -33,20 +36,23 @@
     "dev": "n8n-node dev",
     "lint": "n8n-node lint",
     "lint:fix": "n8n-node lint --fix",
-    "prepublishOnly": "npm run build && npm test",
-    "publish:public": "npm publish --access public",
+    "prepublishOnly": "pnpm run build && pnpm test",
+    "publish:public": "pnpm publish --access public",
     "release": "n8n-node release",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "files": [
-    "dist",
+    "dist/credentials/**",
+    "dist/lib/**",
+    "dist/nodes/**",
+    "dist/package.json",
     "scripts/device-code-bootstrap.mjs"
   ],
   "dependencies": {
     "@n8n/ai-node-sdk": "^0.17.2",
-    "@openai/codex": "0.142.1",
-    "@openai/codex-sdk": "0.142.1"
+    "@openai/codex": "0.159.2",
+    "@openai/codex-sdk": "0.159.2"
   },
   "n8n": {
     "n8nNodesApiVersion": 1,
@@ -71,5 +77,6 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
-  }
+  },
+  "packageManager": "pnpm@11.5.2"
 }

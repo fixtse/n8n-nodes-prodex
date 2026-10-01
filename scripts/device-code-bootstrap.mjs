@@ -131,7 +131,7 @@ async function main() {
 main().catch((error) => {
   process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
   process.stderr.write(
-    '\nIf login still fails, run `npx @openai/codex login --device-auth` manually, then retry with:\n  npx n8n-nodes-prodex --export-existing\n',
+    '\nIf login still fails, run `npx @openai/codex login --device-auth` manually, then retry with:\n  npx @fixtse/n8n-nodes-prodex --export-existing\n',
   );
   process.exit(1);
 });

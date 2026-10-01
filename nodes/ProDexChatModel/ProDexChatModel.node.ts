@@ -4,16 +4,11 @@ import { supplyModel } from '@n8n/ai-node-sdk';
 
 import { resolveRunnableAuth } from '../../lib/auth/resolveAuth';
 import { CodexChatModel } from '../../lib/codex/CodexChatModel';
+import { CODEX_MODELS, DEFAULT_CODEX_MODEL } from '../../lib/codex/models';
 import { CodexAuthRefreshError, CodexAuthSetupError } from '../../lib/errors';
 import { resolveSkillNames } from '../../lib/skills/buildAgentPrompt';
 import { getInstalledSkillLoadOptions } from '../../lib/skills/skillLoadOptions';
 import type { CodexCredentialValues, Personality, ReasoningEffort, SandboxMode } from '../../lib/types/codex';
-
-const DEFAULT_MODELS = [
-  { name: 'GPT-5.5', value: 'gpt-5.5' },
-  { name: 'GPT-5.4', value: 'gpt-5.4' },
-  { name: 'GPT-5.4 Mini', value: 'gpt-5.4-mini' },
-];
 
 export class ProDexChatModel implements INodeType {
   description: INodeTypeDescription = {
@@ -102,8 +97,8 @@ export class ProDexChatModel implements INodeType {
         displayName: 'Model',
         name: 'model',
         type: 'options',
-        options: DEFAULT_MODELS,
-        default: 'gpt-5.4',
+        options: [...CODEX_MODELS],
+        default: DEFAULT_CODEX_MODEL,
         description: 'Codex model used when AI Agent invokes the chat model',
       },
       {
@@ -114,6 +109,7 @@ export class ProDexChatModel implements INodeType {
           { name: 'Extra High', value: 'xhigh' },
           { name: 'High', value: 'high' },
           { name: 'Low', value: 'low' },
+          { name: 'Max', value: 'max' },
           { name: 'Medium', value: 'medium' },
         ],
         default: 'medium',

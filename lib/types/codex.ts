@@ -48,7 +48,7 @@ export interface CodexAgentResult {
   finishReason: string;
 }
 
-export type ReasoningEffort = 'low' | 'medium' | 'high' | 'xhigh';
+export type ReasoningEffort = 'low' | 'medium' | 'high' | 'xhigh' | 'max';
 export type Personality = 'default' | 'friendly' | 'pragmatic';
 export type SandboxMode = 'read_only' | 'workspace_write' | 'full_access';
 export type ThreadMode = 'new' | 'continue' | 'resume';

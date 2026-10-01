@@ -6,7 +6,7 @@ Run **OpenAI Codex** inside self-hosted n8n workflows — powered by your **Code
 
 <br />
 
-[![npm version](https://img.shields.io/npm/v/n8n-nodes-prodex?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/n8n-nodes-prodex)
+[![npm version](https://img.shields.io/npm/v/%40fixtse%2Fn8n-nodes-prodex?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/@fixtse/n8n-nodes-prodex)
 [![Releases & Roadmap](https://img.shields.io/badge/Releases_%26_Roadmap-prodex.proday.in-0ea5e9?style=for-the-badge)](https://prodex.proday.in)
 [![Portfolio — Nils](https://img.shields.io/badge/✨_Portfolio-nils.proday.in-8b5cf6?style=for-the-badge)](https://nils.proday.in)
 
@@ -14,7 +14,7 @@ Run **OpenAI Codex** inside self-hosted n8n workflows — powered by your **Code
 
 **Built by [Nils](https://nils.proday.in)** · automation, workflows & integrations
 
-[📦 npm](https://www.npmjs.com/package/n8n-nodes-prodex) · [🌐 prodex.proday.in](https://prodex.proday.in) · [💼 nils.proday.in](https://nils.proday.in) · [GitHub](https://github.com/artNcraft/n8n-nodes-prodex)
+[📦 npm](https://www.npmjs.com/package/@fixtse/n8n-nodes-prodex) · [🌐 prodex.proday.in](https://prodex.proday.in) · [💼 nils.proday.in](https://nils.proday.in) · [GitHub](https://github.com/fixtse/n8n-nodes-prodex)
 
 </div>
 
@@ -82,7 +82,7 @@ In self-hosted n8n:
 3. Enter package name:
 
 ```
-n8n-nodes-prodex
+@fixtse/n8n-nodes-prodex
 ```
 
 4. Accept the risk prompt and install
@@ -91,16 +91,16 @@ n8n-nodes-prodex
 ### Option B: Custom extensions directory (development)
 
 ```bash
-git clone https://github.com/artNcraft/n8n-nodes-prodex.git
+git clone https://github.com/fixtse/n8n-nodes-prodex.git
 cd n8n-nodes-prodex
-npm install
-npm run build
+pnpm install
+pnpm run build
 
 export N8N_CUSTOM_EXTENSIONS="/absolute/path/to/n8n-nodes-prodex"
 n8n start
 ```
 
-The package directory must contain installed dependencies (`@openai/codex`, `@openai/codex-sdk`). Running `npm install` in the package folder satisfies that requirement.
+The package directory must contain installed dependencies (`@openai/codex`, `@openai/codex-sdk`). Running `pnpm install` in the package folder satisfies that requirement.
 
 For Docker, mount the built package and set `N8N_CUSTOM_EXTENSIONS`. See [`docker/Dockerfile.n8n-codex`](docker/Dockerfile.n8n-codex).
 
@@ -217,6 +217,8 @@ Output includes `appliedSkills` so you can verify what was loaded.
 5. Choose model, reasoning effort, sandbox, and thread mode
 6. Execute
 
+The model picker offers GPT-6 Astra, GPT-6.1 Sol (default), GPT-6 Sol, and GPT-6 Luna. Model access depends on your Codex account and plan.
+
 ### Output fields
 
 ```json
@@ -225,7 +227,7 @@ Output includes `appliedSkills` so you can verify what was loaded.
   "threadId": "thread_...",
   "items": [],
   "usage": { "inputTokens": 0, "outputTokens": 0, "totalTokens": 0 },
-  "model": "gpt-5.4",
+  "model": "gpt-6.1-sol",
   "finishReason": "stop"
 }
 ```
@@ -245,7 +247,7 @@ Output includes `appliedSkills` so you can verify what was loaded.
 3. Create the **ProDex Auth API** credential from the exported JSON
 4. Build workflow: **Manual Trigger** → **ProDex** → **Set**
 5. Prompt: `Reply with the single word OK.`
-6. Model: `gpt-5.4`, Sandbox: `Read Only`, Thread Mode: `New Thread`
+6. Model: `gpt-6.1-sol`, Sandbox: `Read Only`, Thread Mode: `New Thread`
 7. Execute and verify `output` contains `OK` and `threadId` is populated
 
 ---
@@ -253,10 +255,10 @@ Output includes `appliedSkills` so you can verify what was loaded.
 ## Development
 
 ```bash
-npm install
-npm run build
-npm test
-npm run lint
+pnpm install
+pnpm run build
+pnpm test
+pnpm run lint
 ```
 
 ---
@@ -290,7 +292,7 @@ MIT
 
 <div align="center">
 
-**[💼 nils.proday.in](https://nils.proday.in)** · **[🌐 prodex.proday.in](https://prodex.proday.in)** · [GitHub](https://github.com/artNcraft/n8n-nodes-prodex) · [npm](https://www.npmjs.com/package/n8n-nodes-prodex)
+**[💼 nils.proday.in](https://nils.proday.in)** · **[🌐 prodex.proday.in](https://prodex.proday.in)** · [GitHub](https://github.com/fixtse/n8n-nodes-prodex) · [npm](https://www.npmjs.com/package/@fixtse/n8n-nodes-prodex)
 
 <br />
 

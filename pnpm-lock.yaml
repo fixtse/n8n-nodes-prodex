@@ -17,6 +17,9 @@ importers:
       '@openai/codex-sdk':
         specifier: 0.159.2
         version: 0.159.2
+      zod-to-json-schema:
+        specifier: ^3.25.2
+        version: 3.25.2(zod@3.25.67)
     devDependencies:
       '@n8n/node-cli':
         specifier: ^0.36.2

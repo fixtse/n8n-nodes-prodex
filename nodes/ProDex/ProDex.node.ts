@@ -61,7 +61,7 @@ export class ProDex implements INodeType {
     properties: [
       {
         displayName:
-          'Before first agent run\n\nComplete setup once with the ProDex Setup node:\n1. Start Device Login\n2. Sign in in the browser\n3. Wait for Login Complete (hasCompleteAuth: true)\n\nNo credential selection is needed — auth is read from auth.json on disk. Leave "Use n8n Credentials" off unless you explicitly store tokens in n8n Credentials.\n\nFor AI Agent workflows, use the ProDex Chat Model node connected to Chat Model instead of Run Agent here.',
+        'Before first agent run\n\nComplete setup once with the ProDex Setup node:\n1. Start Device Login\n2. Sign in in the browser\n3. Wait for Login Complete (hasCompleteAuth: true)\n\nNo credential selection is needed — auth is read from auth.json on disk. Leave "Use n8n Credentials" off unless you explicitly store tokens in n8n Credentials.\n\nFor n8n AI Agent workflows, connect ProDex Chat Model to its Chat Model input. Use the separate ProDex Agent root node when Codex should run the agent loop with n8n memory and tools.',
         name: 'prerequisiteNotice',
         type: 'notice',
         default: '',

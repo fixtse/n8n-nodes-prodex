@@ -48,6 +48,7 @@ This project is built and maintained by **[Nils](https://nils.proday.in)**.
 ## ✨ Features
 
 - **ProDex** root node — prompt in, agent result out
+- **ProDex Agent** root node with native n8n Memory and Tool connections, backed by Codex app-server dynamic tools
 - **ProDex Chat Model** for n8n **AI Agent** (connect to Chat Model input)
 - **ProDex Setup** node for browser login and credential export inside n8n
 - **Token refresh** at runtime when access tokens expire
@@ -59,7 +60,7 @@ This project is built and maintained by **[Nils](https://nils.proday.in)**.
 
 ## ⚠️ Important caveat
 
-This package uses Codex through the official `@openai/codex-sdk`, which spawns the Codex CLI and authenticates with ChatGPT subscription tokens. Codex backend endpoints may change without notice. Pin package versions in production.
+The ProDex and ProDex Chat Model nodes use the official `@openai/codex-sdk`. ProDex Agent uses Codex app-server to register connected n8n tools as dynamic tools; Codex currently marks this app-server tool API experimental. Codex backend endpoints and protocol details may change without notice. Pin package versions in production.
 
 ---
 
@@ -170,6 +171,18 @@ ProDex Chat Model ──────→ Chat Model (on AI Agent)
 - Credentials are optional when `auth.json` is already on the server
 - Tool nodes connected to AI Agent have limited support — Codex returns text responses, not native LangChain tool-call payloads. For full coding-agent behavior (sandbox, shell, multi-file edits), use the standalone **ProDex** node
 - Default sandbox is **Read Only** for safer chat use
+
+## Use ProDex Agent with memory and tools
+
+Use **ProDex Agent** when Codex should own the agent loop and call n8n tools directly. This is separate from **ProDex Chat Model**, which remains a model connection for n8n's AI Agent.
+
+1. Complete ProDex Setup.
+2. Connect your trigger or chat input to **ProDex Agent**.
+3. Connect an n8n memory node to the Agent's **Memory** input.
+4. Connect n8n tool nodes to the Agent's **Tools** input.
+5. Choose the sandbox and run the workflow.
+
+The node loads memory before the turn and saves the user prompt and final response afterward. Codex invokes connected tools through app-server callbacks; tool call names, arguments, and results are included in the output. Codex app-server dynamic tools are experimental and require the package's bundled Codex CLI version.
 
 ---
 

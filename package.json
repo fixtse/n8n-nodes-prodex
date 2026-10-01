@@ -1,7 +1,7 @@
 {
   "name": "@fixtse/n8n-nodes-prodex",
-  "version": "0.6.0",
-  "description": "Self-hosted n8n ProDex node via ChatGPT subscription device-code auth",
+  "version": "0.7.0",
+  "description": "Self-hosted n8n Codex agent and chat model via ChatGPT subscription device-code auth",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -52,7 +52,8 @@
   "dependencies": {
     "@n8n/ai-node-sdk": "^0.17.2",
     "@openai/codex": "0.159.2",
-    "@openai/codex-sdk": "0.159.2"
+    "@openai/codex-sdk": "0.159.2",
+    "zod-to-json-schema": "^3.25.2"
   },
   "n8n": {
     "n8nNodesApiVersion": 1,
@@ -62,6 +63,7 @@
     ],
     "nodes": [
       "dist/nodes/ProDex/ProDex.node.js",
+      "dist/nodes/ProDexAgent/ProDexAgent.node.js",
       "dist/nodes/ProDexChatModel/ProDexChatModel.node.js",
       "dist/nodes/ProDexSetup/ProDexSetup.node.js"
     ]

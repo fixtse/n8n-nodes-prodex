@@ -3,3 +3,5 @@ allowBuilds:
   eslint-plugin-n8n-nodes-base: true
   isolated-vm: true
   unrs-resolver: true
+overrides:
+  uuid: 11.1.1

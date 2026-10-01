@@ -48,7 +48,7 @@ This project is built and maintained by **[Nils](https://nils.proday.in)**.
 ## ✨ Features
 
 - **ProDex** root node — prompt in, agent result out
-- **ProDex Agent** root node with native n8n Memory and Tool connections, backed by Codex app-server dynamic tools
+- **ProDex Agent** root node with native n8n Memory and Tool connections, backed by Codex app-server dynamic tools and built-in live web search
 - **ProDex Chat Model** for n8n **AI Agent** (connect to Chat Model input)
 - **ProDex Setup** node for browser login and credential export inside n8n
 - **Token refresh** at runtime when access tokens expire
@@ -182,7 +182,7 @@ Use **ProDex Agent** when Codex should own the agent loop and call n8n tools dir
 4. Connect n8n tool nodes to the Agent's **Tools** input.
 5. Choose the sandbox and run the workflow.
 
-The node loads memory before the turn and saves the user prompt and final response afterward. Codex invokes connected tools through app-server callbacks; tool call names, arguments, and results are included in the output. Codex app-server dynamic tools are experimental and require the package's bundled Codex CLI version.
+The node loads memory before the turn and saves the user prompt and final response afterward. Codex live web search is enabled through the built-in search capability, so you do not need to connect a separate search node. Codex invokes other connected tools through app-server callbacks; tool call names, arguments, and results are included in the output. Codex app-server dynamic tools are experimental and require the package's bundled Codex CLI version.
 
 ---
 

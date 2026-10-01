@@ -1,6 +1,6 @@
 {
   "name": "@fixtse/n8n-nodes-prodex",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Self-hosted n8n Codex agent and chat model via ChatGPT subscription device-code auth",
   "license": "MIT",
   "publishConfig": {
@@ -53,7 +53,11 @@
     "@n8n/ai-node-sdk": "^0.17.2",
     "@openai/codex": "0.159.2",
     "@openai/codex-sdk": "0.159.2",
+    "uuid": "11.1.1",
     "zod-to-json-schema": "^3.25.2"
+  },
+  "overrides": {
+    "uuid": "11.1.1"
   },
   "n8n": {
     "n8nNodesApiVersion": 1,

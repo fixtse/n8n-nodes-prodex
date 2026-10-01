@@ -53,10 +53,14 @@ export async function runAppServerAgent(params: RunAppServerAgentParams): Promis
 }> {
   const require = createRequire(__filename);
   const cliPath = require.resolve('@openai/codex/bin/codex.js');
-  const child = spawn(process.execPath, [cliPath, 'app-server', '--listen', 'stdio://'], {
+  const child = spawn(
+    process.execPath,
+    [cliPath, '--config', 'web_search="live"', 'app-server', '--listen', 'stdio://'],
+    {
     env: { ...process.env, CODEX_HOME: params.codexHome },
     stdio: ['pipe', 'pipe', 'pipe'],
-  }) as ChildProcessWithoutNullStreams;
+    },
+  ) as ChildProcessWithoutNullStreams;
 
   const pending = new Map<string | number, {
     resolve: (value: unknown) => void;
@@ -191,7 +195,7 @@ export async function runAppServerAgent(params: RunAppServerAgentParams): Promis
       rejectStartup = reject;
       void (async () => {
         await request('initialize', {
-          clientInfo: { name: 'n8n-prodex', title: 'ProDex Agent', version: '0.7.0' },
+          clientInfo: { name: 'n8n-prodex', title: 'ProDex Agent', version: '0.7.1' },
           capabilities: { experimentalApi: true },
         });
         write({ jsonrpc: '2.0', method: 'initialized', params: {} });

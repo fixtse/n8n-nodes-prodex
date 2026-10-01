@@ -95,7 +95,7 @@ export class ProDexAgent implements INodeType {
     properties: [
       {
         displayName:
-          'Connect this node’s Memory and Tool inputs to n8n AI memory and tool nodes. Codex runs the agent loop and calls connected tools through Codex app-server. Dynamic tools use an experimental Codex app-server protocol and require a compatible Codex CLI.',
+          'Codex built-in live web search is enabled, so no separate search tool is needed. Connect this node’s Memory and Tool inputs to n8n AI memory and other tool nodes. Codex runs the agent loop and calls connected tools through Codex app-server. Dynamic tools use an experimental Codex app-server protocol and require a compatible Codex CLI.',
         name: 'usageNotice',
         type: 'notice',
         default: '',
